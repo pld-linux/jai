@@ -23,6 +23,7 @@ NoSource:	2
 NoSource:	3
 URL:		https://jai.dev.java.net/
 BuildRequires:	jpackage-utils
+BuildRequires:	unzip
 Requires:	jre
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
