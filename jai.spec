@@ -22,7 +22,8 @@ NoSource:	1
 NoSource:	2
 NoSource:	3
 URL:		https://jai.dev.java.net/
-Requires:	jre >= 1.4.2
+BuildRequires:	jpackage-utils
+Requires:	jre
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -45,6 +46,7 @@ rozszerzalny szkielet do przetwarzania obrazów.
 Summary:	JAI documentation
 Summary(pl.UTF-8):	Dokumentacja biblioteki JAI
 Group:		Documentation
+Requires:	jpackage-utils
 
 %description javadoc
 JAI documentation.
@@ -71,10 +73,10 @@ install -d $RPM_BUILD_ROOT%{_javadir}
 
 install lib/*.jar $RPM_BUILD_ROOT%{_javadir}
 %ifarch %{ix86}
-install -D lib/libmlib_jai.so $RPM_BUILD_ROOT%{_libdir}/java/jre/lib/i386/libmlib_jai.so
+install -D lib/libmlib_jai.so $RPM_BUILD_ROOT%{java_home}/jre/lib/i386/libmlib_jai.so
 %endif
 %ifarch %{x8664}
-install -D lib/libmlib_jai.so $RPM_BUILD_ROOT%{_libdir}/java/jre/lib/amd64/libmlib_jai.so
+install -D lib/libmlib_jai.so $RPM_BUILD_ROOT%{java_home}/jre/lib/amd64/libmlib_jai.so
 %endif
 
 install -d $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
@@ -96,11 +98,11 @@ fi
 %defattr(644,root,root,755)
 %doc COPYRIGHT-jai.txt LICENSE-jai.txt THIRDPARTYLICENSEREADME-jai.txt DISTRIBUTIONREADME-jai.txt
 %ifarch i586 i686 pentium3 pentium4 athlon
-%attr(755,root,root) %{_libdir}/java/jre/lib/i386/libmlib_jai.so
+%attr(755,root,root) %{java_home}/jre/lib/i386/libmlib_jai.so
 %{_javadir}/mlibwrapper_jai.jar
 %endif
 %ifarch %{x8664}
-%attr(755,root,root) %{_libdir}/java/jre/lib/amd64/libmlib_jai.so
+%attr(755,root,root) %{java_home}/jre/lib/amd64/libmlib_jai.so
 %{_javadir}/mlibwrapper_jai.jar
 %endif
 %{_javadir}/jai_codec.jar
